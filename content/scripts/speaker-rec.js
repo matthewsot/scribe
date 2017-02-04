@@ -12,9 +12,11 @@ function startSpeakerRec() {
 }
 function updateSpeakerRec(data) {
     var attendee = window.attendees.filter(function (el) { return el.peerId == data.peerId })[0];
+    window.loudnesses[window.attendees.indexOf(attendee)] = data.loudness;
+    $("#predictions").html("");
+
     var li = $("li[data-id=\"" + data.peerId + "\"]");
     li.text(attendee.name + " - " + data.loudness);
-    window.loudnesses[window.attendees.indexOf(attendee)] = data.loudness;
     var maxLoudness = window.loudnesses.reduce(function (acc, a) { return Math.max(acc, a); }, -10000);
     var maxLoudnessAttendeeIndex = window.loudnesses.indexOf(maxLoudness);
     $("li").removeClass("speaking");

@@ -19,20 +19,32 @@
         <button id="do-create-meeting">Create Meeting</button>
     </div>
     <div id="join-mtg-overlay" class="overlay">
+        <h1>Join a Meeting</h1>
+        <input type="text" placeholder="Meeting Code" id="join-mtg-code" />
+        <input type="text" placeholder="Your Name" id="client-name" />
+        <button id="do-join-meeting">Join Meeting</button>
     </div>
     <div id="waiting-host-overlay" class="overlay">
         <h1>Meeting Code: <span id="mtg-id"></span></h1>
-        <p>Have others connect with the above meeting ID. Once you're ready to go, hit "Start Calibration" and have everyone stay silent for a few seconds. Once you press "Stop Calibration" the meeting will begin.</p>
+        <p>Have others connect with the above meeting code. Once you're ready to go, hit "Start Calibration" and have everyone stay silent for a few seconds. Once you press "Stop Calibration" the meeting will begin.</p>
+        <h2>Current Attendees:</h2>
+        <ul id="attendees">
+        </ul>
         <button id="calibrate">Start Calibration</button>
     </div>
     <div id="waiting-client-overlay" class="overlay">
         Please wait until the host starts the calibration.
     </div>
+    <div id="calibrating-client-overlay" class="overlay">
+        Currently calibrating. Please stay silent until the host ends the calibration period.
+    </div>
+
+    <h1>Scribe</h1>
 
     <button id="predict-speaker">Start Speaker Recognition Demo</button>
-
-    <ul id="attendees">
-    </ul>
+    
+    <ol id="predictions">
+    </ol>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/matthewsot/wedge/8e47f6ccccfc1e7301630c7e863bbd20a9c7ad85/wedge.min.js"></script>
