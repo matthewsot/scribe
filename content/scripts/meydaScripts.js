@@ -1,9 +1,8 @@
-window.last_n = [];
-window.last_n_n = 200;
 window.featureBuffer = [];
+window.pushToFeatureBuffer = false;
 function receiveFeatures(loudness) {
-    if (loudness.total < 5) {
-        return;
+    if (pushToFeatureBuffer) {
+        window.featureBuffer.push(loudness.total);
     }
 }
 
@@ -31,7 +30,7 @@ navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(function
     meydaAnalyzer.start(features);
     setInterval(function () {
         var got = meydaAnalyzer.get(features);
-//        console.log(got);
+        if (got == null) return;
         receiveFeatures(got.loudness);
     }, (bufferSize / samplesPerMs));
 }).catch(function(err) {
