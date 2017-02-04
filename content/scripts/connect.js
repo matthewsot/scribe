@@ -1,4 +1,4 @@
-window.peer = new Peer({ host: 'peerserver.mawteam.com', port: 443, path: '/peerserver' });
+window.peer = new Peer({ host: 'peerserver.mawteam.com', port: 443, path: '/' });
 
 window.attendees = [ ];
 window.clients = [ ];
