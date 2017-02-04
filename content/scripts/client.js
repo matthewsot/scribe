@@ -1,16 +1,3 @@
-window.sendAllClients = function (message) {
-    for (var i = 0; i < window.clients.length; i++) {
-        window.clients[i].send(message);
-    }
-    window.handleServerMessage(message);
-};
-
-window.handleClientMessage = function (data, client) {
-    if (data.type == "command" || data.type == "speaker-update" /* && data.command == "start-calibration"*/) {
-        window.sendAllClients(data);
-    }
-};
-
 window.handleServerMessage = function (data) {
     if (data[0] != undefined && data[0].name != undefined) {
         window.attendees = data;
@@ -43,7 +30,7 @@ window.handleServerMessage = function (data) {
             var curr_loudness = window.featureBuffer.reduce(function (acc, currVal, i, arr) { return acc + (currVal / arr.length) }, 0);
             window.featureBuffer = [];
             curr_loudness -= window.baselineLoudness;
-            window.sendServerMessage({ type: "speaker-update", loudness: curr_loudness, peerId: peer.id });
+            window.sendServerMessage({ forward: true, type: "speaker-update", loudness: curr_loudness, peerId: peer.id });
         }, 2000);
         return;
     }
