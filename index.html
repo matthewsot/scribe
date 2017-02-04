@@ -2,14 +2,21 @@
 <html>
 <head>
     <title>Scribe</title>
+    <style type="text/css">
+        li.speaking {
+            font-weight: 700;
+        }
+    </style>
 </head>
 <body>
     <h1 id="status"></h1>
     <button id="calibrate">Start Calibration</button>
+    <button id="predict-speaker">Start Speaker Recognition Demo</button>
 
     <ul id="attendees">
     </ul>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
     <script src="http://cdn.peerjs.com/0.3/peer.js"></script>
     <script src="content/scripts/messageHandlers.js"></script>
     <script src="content/scripts/index.js"></script>

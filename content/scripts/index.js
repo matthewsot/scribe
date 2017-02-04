@@ -12,7 +12,7 @@ peer.on('open', function (id) {
         peer.on('connection', function (client) {
             client.on('data', function (data) {
                 if (typeof data == "string") {
-                    attendees.push({ name: data, peerId: client.id });
+                    attendees.push({ name: data, peerId: client.peer });
                     window.sendAllClients(attendees);
                 } else {
                     window.handleClientMessage(data, client);
