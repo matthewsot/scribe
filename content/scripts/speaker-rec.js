@@ -7,20 +7,25 @@ function startSpeakerRec() {
         var curr_loudness = window.featureBuffer.reduce(function (acc, currVal, i, arr) { return acc + (currVal / arr.length) }, 0);
         window.featureBuffer = [];
         curr_loudness -= window.baselineLoudness;
-        window.sendServerMessage({ forward: true, type: "speaker-update", loudness: curr_loudness, peerId: peer.id });
+        window.sendServerMessage({ forward: true, type: "command", command: "speaker-update", loudness: curr_loudness, peerId: peer.id });
     }, 2000);
 }
 function updateSpeakerRec(data) {
     var attendee = window.attendees.filter(function (el) { return el.peerId == data.peerId })[0];
     window.loudnesses[window.attendees.indexOf(attendee)] = data.loudness;
     $("#predictions").html("");
+    
+    var sortedLoudnesses = loudnesses.slice();
+    sortedLoudnesses.sort();
+    sortedLoudnesses.reverse();
 
-    var li = $("li[data-id=\"" + data.peerId + "\"]");
-    li.text(attendee.name + " - " + data.loudness);
-    var maxLoudness = window.loudnesses.reduce(function (acc, a) { return Math.max(acc, a); }, -10000);
-    var maxLoudnessAttendeeIndex = window.loudnesses.indexOf(maxLoudness);
-    $("li").removeClass("speaking");
-    $("li[data-id=\"" + window.attendees[maxLoudnessAttendeeIndex].peerId + "\"]").addClass("speaking");
+    for (var i = 0; i < sortedLoudnesses.length; i++) {
+        var attendeeIndex = loudnesses.indexOf(sortedLoudnesses[i]);
+        var currAttendee = window.attendees[attendeeIndex];
+        var li = document.createElement("li");
+        $(li).text(currAttendee.name + " - " + sortedLoudnesses[i]);
+        $("#predictions").append(li);
+    }
 }
 function stopSpeakerRec() {
     window.pushToFeatureBuffer = false;

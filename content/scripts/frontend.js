@@ -1,3 +1,5 @@
+window.isHost = false;
+
 $("body").on("keypress", "input", function (e) {
     if (e.which == 13) {
         var btn = $(this).siblings("button");
@@ -6,7 +8,6 @@ $("body").on("keypress", "input", function (e) {
         }
     }
 });
-
 
 wedge.show("#loading-overlay", { autoPositionType: 2, allowExit: false });
 

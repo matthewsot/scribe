@@ -10,10 +10,8 @@ var context = new AudioContext();
 var sampleRate = context.sampleRate; //48000 on my machine
 var samplesPerMs = sampleRate / 1000;
 var bufferSize = 2048;
-window.meydaAnalyzer = null;
 navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(function(mediaStream) {
     console.log("Success!");
-    console.log(mediaStream);
     window.mediaStream = mediaStream;
     var features = [ "loudness" ];
     window.meydaAnalyzer = Meyda.createMeydaAnalyzer({
@@ -34,6 +32,6 @@ navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(function
         receiveFeatures(got.loudness);
     }, (bufferSize / samplesPerMs));
 }).catch(function(err) {
-  /* handle the error */
+    console.log("Error");
+    console.log(err);
 });
-
