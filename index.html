@@ -2,22 +2,43 @@
 <html>
 <head>
     <title>Scribe</title>
-    <style type="text/css">
-        li.speaking {
-            font-weight: 700;
-        }
-    </style>
+    <link rel="stylesheet" href="content/styles/index.css" />
 </head>
 <body>
-    <h1 id="status"></h1>
-    <button id="calibrate">Start Calibration</button>
+    <div id="loading-overlay" class="overlay">
+        Loading...
+    </div>
+    <div id="landing-overlay" class="overlay">
+        <h1>Welcome to Scribe!</h1>
+        <button id="create-meeting">I'm starting a new meeting</button>
+        <button id="join-meeting">I have a meeting code</button>
+    </div>
+    <div id="new-mtg-overlay" class="overlay">
+        <h1>Start a New Meeting</h1>
+        <input type="text" placeholder="Your Name" id="host-name" />
+        <button id="do-create-meeting">Create Meeting</button>
+    </div>
+    <div id="join-mtg-overlay" class="overlay">
+    </div>
+    <div id="waiting-host-overlay" class="overlay">
+        <h1>Meeting Code: <span id="mtg-id"></span></h1>
+        <p>Have others connect with the above meeting ID. Once you're ready to go, hit "Start Calibration" and have everyone stay silent for a few seconds. Once you press "Stop Calibration" the meeting will begin.</p>
+        <button id="calibrate">Start Calibration</button>
+    </div>
+    <div id="waiting-client-overlay" class="overlay">
+        Please wait until the host starts the calibration.
+    </div>
+
     <button id="predict-speaker">Start Speaker Recognition Demo</button>
 
     <ul id="attendees">
     </ul>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/matthewsot/wedge/8e47f6ccccfc1e7301630c7e863bbd20a9c7ad85/wedge.min.js"></script>
     <script src="http://cdn.peerjs.com/0.3/peer.js"></script>
+    <script src="content/scripts/calibration.js"></script>
+    <script src="content/scripts/speaker-rec.js"></script>
     <script src="content/scripts/client.js"></script>
     <script src="content/scripts/server.js"></script>
     <script src="content/scripts/connect.js"></script>

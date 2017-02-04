@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+html, body {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    color: #222;
+}
+
+h1, h2, h3 {
+    font-weight: 400;
+    margin: 0 auto;
+}
+
+button {
+    background-color: #fff;
+    border: 1px solid #222;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 15px;
+    transition: all 0.1s linear;
+}
+    button:hover {
+        background-color: #222;
+        color: #fff;
+    }
+    button + button {
+        margin-left: 30px;
+    }
+
+li.speaking {
+    font-weight: 700;
+}
+
+.overlay {
+    display: none;
+    background-color: #fff;
+    padding: 30px;
+    margin-top: -50px;
+    border-radius: 3px;
+}
+    .overlay h1 {
+        font-size: 25px;
+        margin-bottom: 30px;
+    }
+    .overlay input {
+        display: block;
+        padding: 5px;
+        width: 300px;
+        border: 1px solid #222;
+        border-radius: 3px;
+        margin: 20px auto;
+    }
