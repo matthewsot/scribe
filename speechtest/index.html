@@ -30,27 +30,29 @@
       //////////////////////////////////////////////////////////////
       // recording sample rate for your acoustic model, usually 16000
       // or 8000
-      var outputSampleRate = 8000;
+      var outputSampleRate = 16000;
       // Name of your acoustic model
 //      var acousticModel = "rm1_200";
       var acousticModel = "hub4wsj_sc_8k";
+      acousticModel = "rm1_200";
       // var acousticModel = "tdt_sc_8k";
       // Where to find the acoustic model (the repository name)
       var amFolder = "pocketsphinx.js-en_US-hub4wsj_sc_8k";
+      amFolder = "pocketsphinx.js-en_US-rm1_200";
       // var amFolder = "pocketsphinx.js-en_US-rm1_200";
       // var amFolder = "pocketsphinx.js-zh-tdt_sc_8k";
       // Name of your dictionary, if you use one
-      var dictionary;
-      // var dictionary = "en_US/hub4.5000.dic"; // the dictionary name
-      // var dictionaryFile = "../pocketsphinx.js-en_US-hub4.5000.dic/hub4.5000.dic.js";  // the dictionary JS file name, should start with "../"
+      // var dictionary;
+      var dictionary = "hub4.5000.dic"; // the dictionary name
+      var dictionaryFile = "en_US/hub4.5000.dic.js";  // the dictionary JS file name, should start with "../"
       // var dictionary = "zh_CN/mandarin_notone.dic"; // the dictionary name
       // var dictionaryFile = "../pocketsphinx.js-zh_CN-mandarin_notone.dic/mandarin_notone.dic.js";  // the dictionary JS file name, should start with "../"
       // Name of your statistical language model, if you use one
-      var languageModel;
+      // var languageModel = "en-us.lm.bin";
       // var languageModel = "en_US/wsj0vp.5000.DMP"; // the model name
       // var languageModelFile = "../pocketsphinx.js-en_US-wsj0vp.5000.DMP/wsj0vp.5000.DMP.js"; // the model JS file name, should start with "../"
-      // var languageModel = "en_US/hub4.5000.DMP"; // the model name
-      // var languageModelFile = "../pocketsphinx.js-en_US-hub4.5000.DMP/hub4.5000.DMP.js"; // the model JS file name, should start with "../"
+      var languageModel = "hub4.5000.DMP"; // the model name
+      var languageModelFile = "en_US/hub4.5000.DMP.js"; // the model JS file name, should start with "../"
       // var languageModel = "zh_CN/gigatdt.5000.DMP"; // the model name
       // var languageModelFile = "../pocketsphinx.js-zh_CN-gigatdt.5000.DMP/gigatdt.5000.DMP.js"; // the model JS file name, should start with "../"
       // You should not need to change that, unless you use special types of acoustic models, such as one with an adaptation matrix
@@ -187,8 +189,8 @@
         if (id && (grammarIds.length > 0)) grammarIds[0].id = id.id;
         if (index < g.length) {
           grammarIds.unshift({title: g[index].title})
-	  postRecognizerJob({command: 'addGrammar', data: g[index].g},
-                             function(id) {feedGrammar(grammars, index + 1, {id:id});});
+/*	  postRecognizerJob({command: 'addGrammar', data: g[index].g},
+                             function(id) {feedGrammar(grammars, index + 1, {id:id});});*/
         } else {
           recognizerReady();
         }
@@ -196,8 +198,8 @@
       // In case we use grammars, and add dictionary words at runtime
       // This adds words to the recognizer. When it calls back, we add grammars
       var feedWords = function(words) {
-           postRecognizerJob({command: 'addWords', data: words},
-                        function() {feedGrammar(grammars, 0);});
+/*           postRecognizerJob({command: 'addWords', data: words},
+                        function() {feedGrammar(grammars, 0);});*/
       };
 
       // This initializes the recognizer. When it calls back, we add words
