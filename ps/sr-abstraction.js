@@ -16,7 +16,7 @@ if (typeof SpeechRecognition == "undefined" && typeof webkitSpeechRecognition ==
     };
 } else {
     console.log("Using browser speech recognition API");
-    speechRecgonizer.recognition;
+    speechRecgonizer.recognition = null;
     if (webkitSpeechRecognition) {
         speechRecognizer.recognition = new webkitSpeechRecognition();
     } else {
