@@ -42,7 +42,11 @@ if (typeof SpeechRecognition == "undefined" && typeof webkitSpeechRecognition ==
     speechRecognizer.startRecognizing = function () {
         recognition.start();        
     };
-    speechRecognizer.stopRecognizing = function () {
-        recognition.stop();
+    speechRecognizer.stopRecognizing = function (abort) {
+        if (abort) {
+            recognition.abort();
+        } else {
+            recognition.stop();
+        }
     };
 }

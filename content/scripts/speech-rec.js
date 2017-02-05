@@ -14,6 +14,8 @@ speechRecognizer.finalHypothesisCallback = function (hyp) {
 //Prime the speech recognition with ~0.5s of previous data
 setInterval(function () {
     if (window.recognizingSpeech) return;
-    speechRecognizer.stopRecognizing();
-    speechRecognizer.startRecognizing();
+    try {
+        speechRecognizer.stopRecognizing(true);
+        speechRecognizer.startRecognizing();
+    } catch (err) { }
 }, 500);
