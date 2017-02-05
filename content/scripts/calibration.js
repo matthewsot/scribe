@@ -12,4 +12,5 @@ function stopCalibration() {
     window.featureBuffer = [];
     document.getElementById("calibrate").textContent = "Start Calibration";
     wedge.close();
+    $(".overlay").hide();
 }
