@@ -14,8 +14,14 @@ speechRecognizer.finalHypothesisCallback = function (hyp) {
 //Prime the speech recognition with ~0.5s of previous data
 setInterval(function () {
     if (window.recognizingSpeech) return;
-    try {
-        speechRecognizer.stopRecognizing(true);
+    if (!webkitSpeechRecognition) {
+        speechRecognizer.stopRecognizing();
         speechRecognizer.startRecognizing();
-    } catch (err) { }
-}, 500);
+    } else {
+        speechRecognizer.recognition.onend = function () {
+            speechRecognizer.recognition.start();
+            //speechRecognizer.recognition.onend = null;
+        }
+        speechRecognizer.recognition.end();
+    }
+}, 1000);

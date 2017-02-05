@@ -16,18 +16,18 @@ if (typeof SpeechRecognition == "undefined" && typeof webkitSpeechRecognition ==
     };
 } else {
     console.log("Using browser speech recognition API");
-    var recognition;
+    speechRecgonizer.recognition;
     if (webkitSpeechRecognition) {
-        recognition = new webkitSpeechRecognition();
+        speechRecognizer.recognition = new webkitSpeechRecognition();
     } else {
-        recognition = new SpeechRecognition;
+        speechRecognizer.recognition = new SpeechRecognition;
     }
 
-    recognition.continuous = true;
-    recognition.interimResults = true;
+    speechRecognizer.recognition.continuous = true;
+    speechRecognizer.recognition.interimResults = true;
 
-    recognition.onstart = function() { }
-    recognition.onresult = function(e) {
+    speechRecognizer.recognition.onstart = function() { }
+    speechRecognizer.recognition.onresult = function(e) {
         for (var i = event.resultIndex; i < event.results.length; ++i) {
             if (e.results[i].isFinal) {
                 speechRecognizer.finalHypothesisCallback(e.results[i][0].transcript);
@@ -40,7 +40,9 @@ if (typeof SpeechRecognition == "undefined" && typeof webkitSpeechRecognition ==
     recognition.onend = function() { }    
 
     speechRecognizer.startRecognizing = function () {
-        recognition.start();        
+        try {
+        recognition.start();
+        } catch { }
     };
     speechRecognizer.stopRecognizing = function (abort) {
         if (abort) {
