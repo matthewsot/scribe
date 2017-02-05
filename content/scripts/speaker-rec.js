@@ -7,7 +7,7 @@ function startSpeakerRec() {
         var curr_loudness = window.featureBuffer.reduce(function (acc, currVal, i, arr) { return acc + (currVal / arr.length) }, 0);
         window.featureBuffer = [];
         curr_loudness -= window.baselineLoudness;
-        window.sendServerMessage({ forward: true, type: "command", command: "speaker-update", loudness: curr_loudness, peerId: peer.id });
+        window.sendServerMessage({ forward: true, type: "command", command: "speaker-update", loudness: curr_loudness, peerId: peerId });
     }, 250);
 }
 
@@ -30,7 +30,7 @@ function updateSpeakerRec(data) {
         $(li).text(currAttendee.name + " - " + sortedLoudnesses[i]);
         $("#predictions").append(li);
 
-        if (i == 0 && currAttendee.peerId == peer.id) {
+        if (i == 0 && currAttendee.peerId == peerId) {
             //We're speaking!
             if (!recognizingSpeech) {
                 recognizingSpeech = true;

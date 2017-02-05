@@ -15,14 +15,14 @@ $("#create-meeting").click(function () {
     window.switchWedgeContent("#new-mtg-overlay");
 });
 $("#do-create-meeting").click(function () {
-    window.attendees.push({ peerId: peer.id, name: $("#host-name").val().trim() });
+    window.attendees.push({ peerId: peerId, name: $("#host-name").val().trim() });
     window.sendAllClients(attendees);
     window.isHost = true;
     $("#mtg-id").text(peer.id);
     peer.on('connection', function (client) {
         client.on('data', function (data) {
-            if (typeof data == "string") {
-                attendees.push({ name: data, peerId: client.peer });
+            if (typeof data.name == "string") {
+                attendees.push({ name: data.name, peerId: data.peerId });
                 window.sendAllClients(attendees);
             } else {
                 window.handleClientMessage(data, client);
@@ -43,7 +43,7 @@ $("#do-join-meeting").click(function () {
         window.handleServerMessage(data);
     });
     window.server.on('open', function () {
-        server.send($("#client-name").val().trim());
+        server.send({ name: $("#client-name").val().trim(), peerId: peerId });
         window.switchWedgeContent("#waiting-client-overlay");
     });
     window.switchWedgeContent("#loading-overlay");

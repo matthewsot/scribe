@@ -1,4 +1,5 @@
-window.peer = new Peer({ host: 'mas-peerserver.herokuapp.com', port: 443, path: '/' });
+peerId =  Math.round(Math.random() * 1000000000).toString();
+window.peer = new Peer(peerId, { host: 'mas-peerserver.herokuapp.com', port: 443, path: '/' });
 
 window.attendees = [ ];
 window.clients = [ ];

@@ -22,7 +22,7 @@ window.handleServerMessage = function (data) {
 
 window.sendServerMessage = function (message) {
     if (window.isHost) {
-        window.handleClientMessage(message, peer.id);
+        window.handleClientMessage(message, peerId);
     } else {
         window.server.send(message);
     }
