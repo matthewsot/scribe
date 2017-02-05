@@ -11,6 +11,8 @@ function startSpeakerRec() {
     }, 250);
 }
 
+var silenceTimeout = -1;
+
 var recognizingSpeech = false;
 function updateSpeakerRec(data) {
     var attendee = window.attendees.filter(function (el) { return el.peerId == data.peerId })[0];
@@ -33,6 +35,18 @@ function updateSpeakerRec(data) {
             if (!recognizingSpeech) {
                 recognizingSpeech = true;
                 speechRecognizer.startRecognizing();
+                clearTimeout(silenceTimeout);
+                silenceTimeout = setTimeout(function () {
+                    recognizingSpeech = false;
+                    speechRecognizer.stopRecognizing();
+                }, 1000);
+            }
+            if (sortedLoudness[0] - sortedLoduness[1] > 0.75) {
+                clearTimeout(silenceTimeout);
+                silenceTimeout = setTimeout(function () {
+                    recognizingSpeech = false;
+                    speechRecognizer.stopRecognizing();
+                }, 1000);
             }
         } else if (i == 0) {
             //We're not speaking
