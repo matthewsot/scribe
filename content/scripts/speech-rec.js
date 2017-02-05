@@ -6,5 +6,7 @@ function updateSpeech(data) {
 }
 
 speechRecognizer.finalHypothesisCallback = function (hyp) {
-    window.sendServerMessage({ forward: true, type: "command", command: "speech-update", text: hyp, peerId: peerId });
+    if (hyp.trim().length > 0) {
+        window.sendServerMessage({ forward: true, type: "command", command: "speech-update", text: hyp, peerId: peerId });
+    }
 };
