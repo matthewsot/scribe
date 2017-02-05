@@ -112,6 +112,10 @@ var loadModels = function() {
 // When the page is loaded, we spawn a new recognizer worker and call getUserMedia to
 // request access to the microphone
 window.onload = function() {
+    if (typeof SpeechRecognition != "undefined" || typeof webkitSpeechRecognition != "undefined") {
+        console.log("SpeechRecognition API exists, not loading PS");
+        return;
+    }
     console.log("Initializing web audio and speech recognizer, waiting for approval to access the microphone");
     callbackManager = new CallbackManager();
     spawnWorker("ps/pocketsphinx/recognizer.js", function(worker) {
