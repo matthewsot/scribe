@@ -9,7 +9,7 @@ function receiveFeatures(loudness) {
 var context = new AudioContext();
 var sampleRate = context.sampleRate; //48000 on my machine
 var samplesPerMs = sampleRate / 1000;
-var bufferSize = 2048;
+var bufferSize = 512;
 navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(function(mediaStream) {
     console.log("Success!");
     window.mediaStream = mediaStream;

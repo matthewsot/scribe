@@ -46,15 +46,16 @@
       // Name of your dictionary, if you use one
       // var dictionary;
       var dictionary = "hub4.5000.dic"; // the dictionary name
-      var dictionaryFile = "en_US/hub4.5000.dic.js";  // the dictionary JS file name, should start with "../"
+      var dictionaryFile = "en_US/" + dictionary + ".js";  // the dictionary JS file name, should start with "../"
       // var dictionary = "zh_CN/mandarin_notone.dic"; // the dictionary name
       // var dictionaryFile = "../pocketsphinx.js-zh_CN-mandarin_notone.dic/mandarin_notone.dic.js";  // the dictionary JS file name, should start with "../"
       // Name of your statistical language model, if you use one
       // var languageModel = "en-us.lm.bin";
       // var languageModel = "en_US/wsj0vp.5000.DMP"; // the model name
       // var languageModelFile = "../pocketsphinx.js-en_US-wsj0vp.5000.DMP/wsj0vp.5000.DMP.js"; // the model JS file name, should start with "../"
-      var languageModel = "hub4.5000.DMP"; // the model name
-      var languageModelFile = "en_US/hub4.5000.DMP.js"; // the model JS file name, should start with "../"
+      var lms = [ "hub4.5000.DMP", "wsj0vp.5000.DMP", "en-phone.lm.DMP" ];
+      var languageModel = lms[1]; // the model name
+      var languageModelFile = "en_US/" + languageModel + ".js"; // the model JS file name, should start with "../"
       // var languageModel = "zh_CN/gigatdt.5000.DMP"; // the model name
       // var languageModelFile = "../pocketsphinx.js-zh_CN-gigatdt.5000.DMP/gigatdt.5000.DMP.js"; // the model JS file name, should start with "../"
       // You should not need to change that, unless you use special types of acoustic models, such as one with an adaptation matrix

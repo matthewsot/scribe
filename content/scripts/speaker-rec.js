@@ -8,7 +8,7 @@ function startSpeakerRec() {
         window.featureBuffer = [];
         curr_loudness -= window.baselineLoudness;
         window.sendServerMessage({ forward: true, type: "command", command: "speaker-update", loudness: curr_loudness, peerId: peer.id });
-    }, 2000);
+    }, 250);
 }
 function updateSpeakerRec(data) {
     var attendee = window.attendees.filter(function (el) { return el.peerId == data.peerId })[0];
