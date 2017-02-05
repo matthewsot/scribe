@@ -30,15 +30,16 @@
       //////////////////////////////////////////////////////////////
       // recording sample rate for your acoustic model, usually 16000
       // or 8000
-      var outputSampleRate = 16000;
       // Name of your acoustic model
 //      var acousticModel = "rm1_200";
       var acousticModel = "hub4wsj_sc_8k";
-      acousticModel = "rm1_200";
+      //acousticModel = "rm1_200";
       // var acousticModel = "tdt_sc_8k";
       // Where to find the acoustic model (the repository name)
       var amFolder = "pocketsphinx.js-en_US-hub4wsj_sc_8k";
-      amFolder = "pocketsphinx.js-en_US-rm1_200";
+      if (acousticModel == "rm1_200") {
+        amFolder = "pocketsphinx.js-en_US-rm1_200";
+      }
       // var amFolder = "pocketsphinx.js-en_US-rm1_200";
       // var amFolder = "pocketsphinx.js-zh-tdt_sc_8k";
       // Name of your dictionary, if you use one
