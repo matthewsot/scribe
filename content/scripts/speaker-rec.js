@@ -41,7 +41,7 @@ function updateSpeakerRec(data) {
                     speechRecognizer.stopRecognizing();
                 }, 1000);
             }
-            if (sortedLoudness[0] - sortedLoduness[1] > 0.75) {
+            if (sortedLoudnesses[0] - sortedLoudnesses[1] > 0.75) {
                 clearTimeout(silenceTimeout);
                 silenceTimeout = setTimeout(function () {
                     recognizingSpeech = false;
