@@ -11,13 +11,6 @@ $("body").on("keypress", "input", function (e) {
 
 wedge.show("#loading-overlay", { autoPositionType: 2, allowExit: false });
 
-window.switchWedgeContent = function (newContent) {
-    $("#wedge-content").children().hide().appendTo("body");
-    $(newContent).show();
-    $("#wedge-content").append($(newContent));
-    $("#wedge-content").find("input").first().focus();
-};
-
 $("#create-meeting").click(function () {
     window.switchWedgeContent("#new-mtg-overlay");
 });
