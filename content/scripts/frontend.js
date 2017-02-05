@@ -58,7 +58,7 @@ $("#calibrate").click(function () {
 });
 
 $("#predict-speaker").click(function () {
-    if ($("#predict-speaker").text().trim() == "Start Speaker Recognition Demo") {
+    if ($("#predict-speaker").text().trim() == "Start") {
         window.sendServerMessage({ forward: true, type: "command", command: "start-speaker-rec" });
     } else {
         window.sendServerMessage({ forward: true, type: "command", command: "stop-speaker-rec" });

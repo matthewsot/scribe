@@ -2,7 +2,7 @@ function startSpeakerRec() {
     window.loudnesses = window.attendees.map(function () { return 0; } );
     window.featureBuffer = [];
     window.pushToFeatureBuffer = true;
-    $("#predict-speaker").text("Stop Speaker Recognition Demo");
+    $("#predict-speaker").text("Stop");
     window.speakerRecInterval = setInterval(function () {
         var curr_loudness = window.featureBuffer.reduce(function (acc, currVal, i, arr) { return acc + (currVal / arr.length) }, 0);
         window.featureBuffer = [];
@@ -60,6 +60,6 @@ function updateSpeakerRec(data) {
 function stopSpeakerRec() {
     window.pushToFeatureBuffer = false;
     window.featureBuffer = [];
-    $("#predict-speaker").text("Start Speaker Recognition Demo");
+    $("#predict-speaker").text("Start");
     clearInterval(window.speakerRecInterval);
 }
