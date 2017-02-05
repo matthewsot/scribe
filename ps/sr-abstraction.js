@@ -34,10 +34,10 @@ if (typeof SpeechRecognition == "undefined" && typeof webkitSpeechRecognition ==
     recognition.onerror = function(e) { }
     recognition.onend = function() { }    
 
-    speechRecognition.startRecognizing = function () {
+    speechRecognizer.startRecognizing = function () {
         recognition.start();        
     };
-    speechRecognition.stopRecognizing = function () {
+    speechRecognizer.stopRecognizing = function () {
         recognition.stop();
     };
 }
