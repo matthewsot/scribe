@@ -3,10 +3,12 @@ window.peer = new Peer(peerId, { host: 'mas-peerserver.herokuapp.com', port: 443
 
 window.attendees = [ ];
 window.clients = [ ];
+window.connectedAlready = false;
 
 peer.on('open', function (id) {
+    if (window.connectedAlready) return;
+    window.connectedAlready = true;
     window.switchWedgeContent("#landing-overlay");
-    return;
 });
 peer.on('disconnected', function () {
     console.log("Disconnected, trying to reconnect...");
