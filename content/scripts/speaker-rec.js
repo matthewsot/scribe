@@ -32,7 +32,7 @@ function updateSpeakerRec(data) {
 
         if (i == 0 && currAttendee.peerId == peerId) {
             //We're speaking!
-            if (!recognizingSpeech) {
+            if (!recognizingSpeech && sortedLoudnesses[0] > 2) {
                 recognizingSpeech = true;
                 speechRecognizer.startRecognizing();
                 clearTimeout(silenceTimeout);

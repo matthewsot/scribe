@@ -10,6 +10,8 @@ peer.on('open', function (id) {
 });
 peer.on('disconnected', function () {
     console.log("Disconnected, trying to reconnect...");
+    peer.id = peerId;
+    peer._lastServerId = peerId; //https://github.com/peers/peerjs/issues/265
     peer.reconnect();
 });
 peer.on("error", function (err) {
