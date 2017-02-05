@@ -10,6 +10,8 @@ function startSpeakerRec() {
         window.sendServerMessage({ forward: true, type: "command", command: "speaker-update", loudness: curr_loudness, peerId: peer.id });
     }, 250);
 }
+
+var recognizingSpeech = false;
 function updateSpeakerRec(data) {
     var attendee = window.attendees.filter(function (el) { return el.peerId == data.peerId })[0];
     window.loudnesses[window.attendees.indexOf(attendee)] = data.loudness;
@@ -25,6 +27,20 @@ function updateSpeakerRec(data) {
         var li = document.createElement("li");
         $(li).text(currAttendee.name + " - " + sortedLoudnesses[i]);
         $("#predictions").append(li);
+
+        if (i == 0 && currAttendee.peerId == peer.id) {
+            //We're speaking!
+            if (!recognizingSpeech) {
+                recognizingSpeech = true;
+                speechRecognizer.startRecognizing();
+            }
+        } else if (i == 0) {
+            //We're not speaking
+            if (recognizingSpeech && (sortedLoudnesses[0] - sortedLoudnesses[1]) > 0.75) { //We want the delta to be more than 0.75 to decide that this isn't just silence
+                recognizingSpeech = false;
+                speechRecognizer.stopRecognizing();
+            }
+        }
     }
 }
 function stopSpeakerRec() {

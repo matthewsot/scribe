@@ -13,7 +13,8 @@ window.handleServerMessage = function (data) {
             "stop-calibration": stopCalibration,
             "start-speaker-rec": startSpeakerRec,
             "speaker-update": updateSpeakerRec,
-            "stop-speaker-rec": stopSpeakerRec
+            "stop-speaker-rec": stopSpeakerRec,
+            "speech-update": updateSpeech,
         };
         commands[data.command](data);
     }
