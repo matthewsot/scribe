@@ -13,7 +13,7 @@ function startSpeakerRec() {
 
 var silenceTimeout = -1;
 
-var recognizingSpeech = false;
+window.recognizingSpeech = false;
 function updateSpeakerRec(data) {
     var attendee = window.attendees.filter(function (el) { return el.peerId == data.peerId })[0];
     window.loudnesses[window.attendees.indexOf(attendee)] = data.loudness;

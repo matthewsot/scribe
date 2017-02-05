@@ -10,3 +10,10 @@ speechRecognizer.finalHypothesisCallback = function (hyp) {
         window.sendServerMessage({ forward: true, type: "command", command: "speech-update", text: hyp, peerId: peerId });
     }
 };
+
+//Prime the speech recognition with ~0.5s of previous data
+setInterval(function () {
+    if (window.recognizingSpeech) return;
+    speechRecognizer.stopRecognizing();
+    speechRecognizer.startRecognizing();
+}, 500);
