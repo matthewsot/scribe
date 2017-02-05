@@ -22,6 +22,6 @@ setInterval(function () {
             speechRecognizer.recognition.start();
             //speechRecognizer.recognition.onend = null;
         }
-        speechRecognizer.recognition.end();
+        speechRecognizer.recognition.stop();
     }
 }, 1000);
