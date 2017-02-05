@@ -36,19 +36,19 @@ if (typeof SpeechRecognition == "undefined" && typeof webkitSpeechRecognition ==
             }
         }
     };
-    recognition.onerror = function(e) { }
-    recognition.onend = function() { }    
+    speechRecognizer.recognition.onerror = function(e) { }
+    speechRecognizer.recognition.onend = function() { }    
 
     speechRecognizer.startRecognizing = function () {
         try {
-        recognition.start();
-        } catch { }
+        speechRecognizer.recognition.start();
+        } catch (e) { }
     };
     speechRecognizer.stopRecognizing = function (abort) {
         if (abort) {
-            recognition.abort();
+            speechRecognizer.recognition.abort();
         } else {
-            recognition.stop();
+            speechRecognizer.recognition.stop();
         }
     };
 }
